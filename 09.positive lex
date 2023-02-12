@@ -1,0 +1,16 @@
+%{
+#include<stdio.h>
+int p_no = 0, n_no = 0;
+%}
+%%
+^[0-9]+ {n_no++; printf("negative number = %s\n",yytext);}
+[0-9]+ {p_no++; printf("positive number = %s\n",yytext);}
+%%
+int yywrap(){}
+int main()								
+{
+yylex();
+printf ("number of positive numbers = %d,"
+		"number of negative numbers = %d\n",
+				p_no, n_no);
+}
